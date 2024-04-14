@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import allProducts from '../data/products.json'
 
 const Detail = ({
-    itemIdSelected,
+    itemIdSelected = 1,
     setProductSelected = () => { }
 }) => {
 

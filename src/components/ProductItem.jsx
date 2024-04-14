@@ -7,7 +7,7 @@ import products from '../data/products.json'
 
 const ProductItem = (
     { product,
-        setItemIdSelected = () => { },
+       navigation,
         setProductSelected = () => { },
     }) => {
 
@@ -17,7 +17,7 @@ const ProductItem = (
 
         <Card style={styles.additionalStylesCard}>
 
-            <Pressable style={styles.pressable} onPress={() => setItemIdSelected(product.id)}>
+            <Pressable style={styles.pressable} onPress={() => navigation.navigate('Detail')}>
 
                 <Text style={styles.textCategory}>{product.title}</Text>
                 <Image

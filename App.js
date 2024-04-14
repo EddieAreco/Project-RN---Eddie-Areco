@@ -1,26 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useCallback, useState } from 'react';
+import { StyleSheet, useWindowDimensions, Platform, SafeAreaView } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
+import Home from './src/screens/Home';
 
-import Header from './src/components/Header'
-import Home from './src/screens/Home'
-import ItemListCategory from './src/screens/ItemListCategory';
-import Detail from './src/screens/Detail';
+import Navigator from './src/navigation/Navigator';
 
 export default function App() {
 
+  // const [categorySelected, setCategorySelected] = useState("")
+
+  // const [productSelected, setProductSelected] = useState("")
+
+  // const [itemIdSelected, setItemIdSelected] = useState("")
+
+  // const [orientation, setOrientation] = useState ("portrait")
+
+  // const { width, height } = useWindowDimensions()
+
+  // useEffect( () => {
+
+  //   if (width > height){
+  //     setOrientation ("landscape")
+  //   } else{
+  //     setOrientation("portrait")
+  //   }
+
+  // }, [ width, height])
+  
   const [ fontsLoaded, fontError ] = useFonts({
     'Roboto': require('./assets/Roboto-Regular.ttf'),
   });
-
-  const [categorySelected, setCategorySelected] = useState("")
-
-  const [productSelected, setProductSelected] = useState("")
-
-  const [itemIdSelected, setItemIdSelected] = useState("")
 
   if (!fontsLoaded || fontError){
     return null;
@@ -29,32 +40,11 @@ export default function App() {
   if (fontsLoaded && !fontError){
     
   return (
-    <View style={styles.container}>
-
-      <Header title={'Titulo principal'} />
-
-      {!categorySelected ? (
-
-        <Home setCategorySelected={setCategorySelected} />
-
-      ) : !itemIdSelected ?
-      (
-        <ItemListCategory 
-        categorySelected={categorySelected} 
-        setCategorySelected={setCategorySelected}
-        setItemIdSelected={setItemIdSelected}
-        />
-      ) : 
-      (
-        <Detail 
-        itemIdSelected= {itemIdSelected}
-        setProductSelected = {setProductSelected}
-        />
-      )
-      }
-
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      
+      <Navigator />
+      
+    </SafeAreaView>
   );
 
   }
@@ -62,8 +52,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     flex: 1,
-    backgroundColor: '#e2e2e2',
+    backgroundColor: 'pink',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -4,7 +4,12 @@ import CategoryItem from '../components/CategoryItem'
 
 import categories from '../data/categories.json'
 
-const Home = ( { setCategorySelected } ) => {
+const Home = ( { route, navigation } ) => {
+
+  console.log(route)
+  console.log(navigation)
+
+
   return (
     <View style={styles.container}>
       
@@ -15,7 +20,7 @@ const Home = ( { setCategorySelected } ) => {
       
       <CategoryItem 
       category={item}
-      selectCategory={setCategorySelected}
+      navigation={navigation}
       />}
       />
 

@@ -8,9 +8,11 @@ import ProductItem from '../components/ProductItem';
 import Search from '../components/Search';
 
 const ItemListCategory = (
-  { categorySelected = "",
+  { categorySelected = "laptops",
     setCategorySelected = () => { },
     setItemIdSelected = () => { },
+    navigation,
+    route
   }) => {
 
   const [keyword, setKeyword] = useState("")
@@ -36,7 +38,7 @@ const ItemListCategory = (
         <FlatList
           data={productsFiltered}
           
-          renderItem={({ item }) => <ProductItem product={item} setItemIdSelected={setItemIdSelected} />}
+          renderItem={({ item }) => <ProductItem product={item} navigation={navigation} />}
 
           keyExtractor={(product) => product.id}
         />
