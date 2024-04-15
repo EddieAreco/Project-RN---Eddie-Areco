@@ -7,7 +7,7 @@ const CategoryItem = ({ category, navigation }) => {
   return (
     <Card style={{ marginVertical: 10, marginHorizontal: 10 }}>
 
-      <Pressable onPress={()=>navigation.navigate('ItemListCategory')}>
+      <Pressable onPress={()=>navigation.navigate('ItemListCategory', {category: category} )}>
 
         <Text style={styles.text}>{category}</Text>
 

@@ -18,7 +18,20 @@ const Navigator = () => {
 
             <Header title={'Titulo principal'} />
 
-            <Stack.Navigator>
+            <Stack.Navigator
+            initialRouteName= 'Home'
+            screenOptions= {
+                ({ route }) => (
+                    {
+                        header: () => {
+                            return <Header title={
+                                route.name === 'Home' ? 'CategoryItem' : route.name === 'ItemListCategory' ? route.params.category : 'Detail'
+                            } />
+                        }
+                    }
+                )
+            }
+            >
 
                 <Stack.Screen
                     component={Home}

@@ -17,7 +17,7 @@ const ProductItem = (
 
         <Card style={styles.additionalStylesCard}>
 
-            <Pressable style={styles.pressable} onPress={() => navigation.navigate('Detail')}>
+            <Pressable style={styles.pressable} onPress={() => navigation.navigate('Detail', { productId: product.id })}>
 
                 <Text style={styles.textCategory}>{product.title}</Text>
                 <Image

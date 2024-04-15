@@ -4,15 +4,17 @@ import React, { useEffect, useState } from 'react'
 import allProducts from '../data/products.json'
 
 const Detail = ({
-    itemIdSelected = 1,
-    setProductSelected = () => { }
+    route,
+    navigation,
 }) => {
 
     const [products, setProducts] = useState("");
 
+    const { productId: itemIdSelected } = route.params
+
     useEffect(() => {
 
-        const findProduct = allProducts.find((product) => product.id === itemIdSelected)
+        const findProduct = allProducts.find((product) => product.id === productId )
 
         setProducts(findProduct)
 
@@ -21,7 +23,7 @@ const Detail = ({
     return (
         <View>
 
-            <Button onPress={ () => setProductSelected("") } title='Volver'/>
+            <Button onPress={ () => navigation.goBack() } title='Volver'/>
 
             {products ? (
                 <View>
