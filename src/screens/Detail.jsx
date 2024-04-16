@@ -14,7 +14,7 @@ const Detail = ({
 
     useEffect(() => {
 
-        const findProduct = allProducts.find((product) => product.id === productId )
+        const findProduct = allProducts.find((product) => product.id === itemIdSelected )
 
         setProducts(findProduct)
 

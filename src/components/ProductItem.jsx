@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: 300,
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
     textCategory: {
         color: 'green',

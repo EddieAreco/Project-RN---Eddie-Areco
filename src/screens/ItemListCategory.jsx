@@ -31,7 +31,7 @@ const ItemListCategory = (
     <>
       <Header title={'category'} />
 
-      <View>
+      <View style = {styles.containerItemListCategory}>
 
         <Search onSearch={setKeyword} goBack={() => navigation.goBack()} />
 
@@ -50,7 +50,7 @@ const ItemListCategory = (
 export default ItemListCategory
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'blue',
+  containerItemListCategory: {
+    alignItems: 'center',
   },
 })

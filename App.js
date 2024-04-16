@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     flex: 1,
+    width: '100%',
     backgroundColor: 'pink',
     alignItems: 'center',
     justifyContent: 'center',
