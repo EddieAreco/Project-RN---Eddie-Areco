@@ -29,8 +29,6 @@ const ItemListCategory = (
 
   return (
     <>
-      <Header title={'category'} />
-
       <View style = {styles.containerItemListCategory}>
 
         <Search onSearch={setKeyword} goBack={() => navigation.goBack()} />

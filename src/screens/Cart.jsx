@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ShopTabNavigator = () => {
+const Cart = () => {
   return (
     <View>
-      <Text>ShopTabNavigator</Text>
+      <Text>Cart</Text>
     </View>
   )
 }
 
-export default ShopTabNavigator
+export default Cart
 
 const styles = StyleSheet.create({})
