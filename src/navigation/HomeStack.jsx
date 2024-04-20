@@ -6,8 +6,6 @@ import Home from '../screens/Home'
 import ItemListCategory from '../screens/ItemListCategory'
 import Detail from '../screens/Detail'
 
-import HomeTab from './HomeTab'
-
 const Stack = createNativeStackNavigator()
 
 const HomeStack = () => {
@@ -16,17 +14,21 @@ const HomeStack = () => {
 
             <Stack.Navigator
                 initialRouteName='Home'
-                screenOptions={
-                    ({ route }) => (
-                        {
-                            header: () => {
-                                return <Header title={
-                                    route.name === 'Home' ? 'CategoryItem' : route.name === 'ItemListCategory' ? route.params.category : 'Detail'
-                                } />
-                            }
-                        }
-                    )
-                }
+                // screenOptions={ () => ({
+                //     headerShown: false
+                // })}
+                // screenOptions={
+                //     ({ route }) => (
+                //         {
+                //             header: () => {
+                //                 return <Header title={
+                //                     route.name === 'Home' ? 'CategoryItem' : route.name === 'ItemListCategory' ? route.params.category : 'Detail'
+                //                 } />
+                //             },
+                //             headerShown:false
+                //         }
+                //     )
+                // }
             >
                 <Stack.Screen
                     component={Home}
@@ -42,11 +44,7 @@ const HomeStack = () => {
                     component={Detail}
                     name='Detail'
                 />
-
-                <Stack.Screen
-                    component={HomeTab}
-                    name='HomeTab'
-                />
+                
             </Stack.Navigator>
         </View>
     )
@@ -56,9 +54,8 @@ export default HomeStack
 
 const styles = StyleSheet.create({
     containerHomeStack: {
-        backgroundColor: 'brown',
         flex: 1,
-        width: '100%',
+        backgroundColor: 'green'
     }
 })
 

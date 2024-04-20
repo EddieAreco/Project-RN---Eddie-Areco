@@ -11,9 +11,9 @@ const Navigator = () => {
 
         <NavigationContainer>
 
-                <HomeStack />
+                {/* <HomeStack /> */}
 
-                {/* <HomeTab /> */}
+                <HomeTab />
 
         </NavigationContainer>
     )

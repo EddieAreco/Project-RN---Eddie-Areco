@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 18,
+    marginTop: 10,
   },
   input: {
     width: 250,

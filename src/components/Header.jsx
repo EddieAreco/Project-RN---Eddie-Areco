@@ -17,8 +17,6 @@ export default Header
 const styles= StyleSheet.create({
     container:{
         width:'100%',
-        marginTop: 40,
-        backgroundColor: 'blue',
     },
     title:{
       fontFamily: 'Roboto',

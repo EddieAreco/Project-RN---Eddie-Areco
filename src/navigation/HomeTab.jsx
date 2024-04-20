@@ -3,9 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { View, StyleSheet } from "react-native-web"
 import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
 
-import Home from "../screens/Home"
 import Header from "../components/Header"
 import CartTabNavigator from "./CartTabNavigator"
+
+import HomeStack from "./HomeStack";
 
 const Tab = createBottomTabNavigator()
 
@@ -19,19 +20,20 @@ const HomeTab = () => {
                 },
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBar,
+                tabBarActiveTintColor: 'purple'
             })}
         >
 
             <Tab.Screen
                 name="Shop"
-                component={Home}
+                component={HomeStack}
                 options={{
-                    tabBarIcon: ({ focused }) => {
+                    tabBarIcon: ({ color }) => {
                         return (
                             <FontAwesome5
                                 name="shopping-basket"
                                 size={24}
-                                color={focused ? "black" : "red"}
+                                color={color}
                             />
                         )
                     }
@@ -42,15 +44,16 @@ const HomeTab = () => {
                 name="CartTabNavigator"
                 component={CartTabNavigator}
                 options={{
-                    tabBarIcon: ({ focused }) => {
+                    tabBarIcon: ({ color }) => {
                         return (
                             <FontAwesome6
                                 name="cart-shopping"
                                 size={24}
-                                color={focused ? "black" : "red"}
+                                color={color}
                             />
                         )
-                    }
+                    },
+                    tabBarBadge: 3,
                 }}
             />
 
@@ -60,13 +63,4 @@ const HomeTab = () => {
 
 export default HomeTab
 
-const styles = StyleSheet.create({
-    tabBar: {
-        flex: 1,
-        backgroundColor: 'blue',
-        height: 300,
-        justifyContent: 'center',
-        border: 2,
-        borderColor: 'green'
-    }
-})
+const styles = StyleSheet.create({})
