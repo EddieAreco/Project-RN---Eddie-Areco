@@ -6,16 +6,11 @@ import { useFonts } from 'expo-font';
 import Home from './src/screens/Home';
 
 import Navigator from './src/navigation/Navigator';
+import { Provider } from 'react-redux';
+
+import store from './src/Store'
 
 export default function App() {
-
-  // const [categorySelected, setCategorySelected] = useState("")
-
-  // const [productSelected, setProductSelected] = useState("")
-
-  // const [itemIdSelected, setItemIdSelected] = useState("")
-
-  // const [orientation, setOrientation] = useState ("portrait")
 
   // const { width, height } = useWindowDimensions()
 
@@ -41,8 +36,12 @@ export default function App() {
     
   return (
     <SafeAreaView style={styles.container}>
+
+    <Provider store= {store}> 
       
-      <Navigator />
+    <Navigator />
+
+    </Provider>
       
     </SafeAreaView>
   );

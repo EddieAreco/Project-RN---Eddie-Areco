@@ -3,6 +3,7 @@ import React from 'react'
 import CategoryItem from '../components/CategoryItem'
 
 import categories from '../data/categories.json'
+import Counter from '../components/Counter'
 
 const Home = ( { route, navigation } ) => {
 
@@ -12,6 +13,8 @@ const Home = ( { route, navigation } ) => {
 
   return (
     <View style={styles.container}>
+      
+      <Counter />
       
       <FlatList
       data = {categories}

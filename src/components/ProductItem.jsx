@@ -4,6 +4,8 @@ import { colors } from '../constants/colors';
 import Card from './Card';
 
 import products from '../data/products.json'
+import { useDispatch } from 'react-redux';
+import { setIdSelected } from '../features/shop/shopSlice';
 
 const ProductItem = (
     { product,
@@ -11,13 +13,22 @@ const ProductItem = (
         setProductSelected = () => { },
     }) => {
 
+        const dispatch = useDispatch();
+
     const { height, width } = useWindowDimensions()
+
+    const handleNavigate = () => {
+
+        dispatch( setIdSelected( product.id ) )
+
+        navigation.navigate('Detail', { productId: product.id })
+    }
 
     return (
 
         <Card style={styles.additionalStylesCard}>
 
-            <Pressable style={styles.pressable} onPress={() => navigation.navigate('Detail', { productId: product.id })}>
+            <Pressable style={styles.pressable} onPress={ handleNavigate }>
 
                 <Text style={styles.textCategory}>{product.title}</Text>
                 <Image
