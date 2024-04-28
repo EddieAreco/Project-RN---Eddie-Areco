@@ -1,24 +1,27 @@
 import { StyleSheet, Text, View, Image, Button } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import allProducts from '../data/products.json'
+import { useDispatch } from "react-redux"
+import { useGetProductsByIdQuery } from '../services/shopService'
+
+import { addItem } from '../features/cart/cartSlice'
 
 const Detail = ({
     route,
     navigation,
 }) => {
 
-    const [products, setProducts] = useState("");
+    const dispatch = useDispatch();
 
     const { productId: itemIdSelected } = route.params
 
-    useEffect(() => {
+    const { data: products, error, isLoading } = useGetProductsByIdQuery( itemIdSelected )
 
-        const findProduct = allProducts.find((product) => product.id === itemIdSelected )
+    const handleAddItem = () => {
 
-        setProducts(findProduct)
+        dispatch( addItem({...products, quantity: 1 }) )
 
-    }, [itemIdSelected])
+    }
 
     return (
         <View>
@@ -34,6 +37,8 @@ const Detail = ({
                         style={styles.imgDetail}
                     />
                     <Text> {products.title} </Text>
+                    <Text> {products.price} </Text>
+                    <Button onPress={ handleAddItem } title='Agregar al carrito' />
 
                 </View>
             ) : null}

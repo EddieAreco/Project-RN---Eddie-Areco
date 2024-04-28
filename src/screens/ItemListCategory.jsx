@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import Header from '../components/Header';
+import { View, StyleSheet, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react'
 
-import products from '../data/products.json'
 import ProductItem from '../components/ProductItem';
 
 import Search from '../components/Search';
+
+import { useGetProductsByCategoryQuery } from '../services/shopService'
 
 const ItemListCategory = (
   { setCategorySelected = () => { },
@@ -19,24 +19,39 @@ const ItemListCategory = (
 
   const { category: categorySelected } = route.params
 
+  const { data: productsFetched, error: errorFetch , isLoading } = useGetProductsByCategoryQuery ( categorySelected )
+  //TRAEMOS LA CATEGORIA QUE OBTUVIMOS COMO PARAMETRO DE ROUTE
+
+  console.log('productsFetched', productsFetched)
+
   useEffect(() => {
 
-    const prevFiltered = products.filter(product => product.category === categorySelected)
-    const filter = prevFiltered.filter(product => product.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()))
-    setProductsFiltered(filter);
+    if( !isLoading){
 
-  }, [keyword, categorySelected])
+      const filter = productsFetched.filter(product => product.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()))
+      setProductsFiltered(filter);
+
+    }
+
+  }, [keyword, categorySelected, productsFetched])
 
   return (
     <>
       <View style = {styles.containerItemListCategory}>
 
-        <Search onSearch={setKeyword} goBack={() => navigation.goBack()} />
+        <Search 
+        onSearch={setKeyword} 
+        goBack={() => navigation.goBack()} 
+        />
 
         <FlatList
           data={productsFiltered}
 
-          renderItem={({ item }) => <ProductItem product={item} navigation={navigation} />}
+          renderItem={({ item }) => 
+
+          <ProductItem product={item} navigation={navigation} />
+
+        }
 
           keyExtractor={(product) => product.id}
         />

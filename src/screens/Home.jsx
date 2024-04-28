@@ -2,14 +2,14 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import CategoryItem from '../components/CategoryItem'
 
-import categories from '../data/categories.json'
+// import categories from '../data/categories.json'
 import Counter from '../components/Counter'
+
+import { useGetCategoriesQuery } from '../services/shopService'
 
 const Home = ( { route, navigation } ) => {
 
-  console.log(route)
-  console.log(navigation)
-
+  const { data: categories , error, isLoading } = useGetCategoriesQuery()
 
   return (
     <View style={styles.container}>
