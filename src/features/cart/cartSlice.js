@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
             )
 
             if (productRepetead){
-console.log('productRepetead', productRepetead)
+                
                 const itemUpdate = state.value.products.map( (item) => {
 
                     if (item.id === payload.id){

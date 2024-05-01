@@ -1,19 +1,26 @@
 import { StyleSheet } from 'react-native'
-import * as React from 'react'
+import React, { useState } from 'react'
 
 import { NavigationContainer } from '@react-navigation/native'
 
 import HomeStack from './HomeStack'
 import HomeTab from './HomeTab'
 
+import LoginScreen from '../screens/LoginScreen'
+import SignUpScreen from '../screens/SignUpScreen'
+import AuthStackNavigator from './AuthStackNavigator'
+
+import { useSelector } from 'react-redux'
+
 const Navigator = () => {
+
+    const { user } = useSelector( state => state.authReducer.value )
+
     return (
 
         <NavigationContainer>
 
-                {/* <HomeStack /> */}
-
-                <HomeTab />
+            {user ? <HomeTab /> : <AuthStackNavigator />}
 
         </NavigationContainer>
     )

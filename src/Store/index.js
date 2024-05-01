@@ -2,8 +2,11 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counterSlice'
 import shopReducer from '../features/shop/shopSlice'
 import cartReducer from '../features/cart/cartSlice'
-import userReducer from '../features/user/userSlice'
+import authReducer from '../features/user/userSlice'
+
 import { shopApi } from '../services/shopService'
+import { authenticatorApi } from '../services/authenticatorService'
+
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 const store = configureStore ({
@@ -11,11 +14,14 @@ const store = configureStore ({
         counterReducer,
         shopReducer,
         cartReducer,
+        authReducer,
         [shopApi.reducerPath]: shopApi.reducer,
-        userReducer,
+        [authenticatorApi.reducerPath]: authenticatorApi.reducer,
     },
     middleware: (getDefaultMiddleware) => 
-      getDefaultMiddleware().concat(shopApi.middleware), 
+      getDefaultMiddleware()
+      .concat(shopApi.middleware)
+      .concat(authenticatorApi.middleware)
     //   EL MIDDLEWARE SIRVE PARA ACOPLAR AL MIDDLEWARE POR DEFECTO NUESTRA API PARA QUE SE PUEDAN REALIZAR LOS LLAMADOS ASINCRONOS
 })
 

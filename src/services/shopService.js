@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseUrl } from '../databases/realtimeDatabase'
 
 export const shopApi = createApi({
+
+    reducerPath: "shopApi",
+    //SE LE ASIGNA UN NOMBRE A LA API PARA EVITAR CONFLICTOS AL TENER MAS DE 1 API
+
     baseQuery:fetchBaseQuery ({ baseUrl: baseUrl }),
     endpoints: (builder) => ({
         getCategories: builder.query ({
@@ -29,8 +33,16 @@ export const shopApi = createApi({
                 return responseTransformed
             },
         }),
+        postOrder: builder.mutation({
+            query: ({...order}) => ({
+                url: 'orders.json',
+                method: 'POST',
+                body: order
+            })
+        })
+        //ESTE ES EL ENDPOINT PARA CREAR LA ORDEN, Y SE HACE UNA MUTATION PORQUE SE VAN A ALTERAR DATOS DENTRO DE LA DATABASE(db)
     })
 })
 
-export const { useGetCategoriesQuery, useGetProductsByCategoryQuery, useGetProductsByIdQuery } = shopApi
+export const { useGetCategoriesQuery, useGetProductsByCategoryQuery, useGetProductsByIdQuery, usePostOrderMutation } = shopApi
 // HACEMOS LA EXPORTACION EN FOMRA DE HOOKS
