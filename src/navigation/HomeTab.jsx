@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import { View, StyleSheet } from "react-native-web"
-import { FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome6, FontAwesome } from '@expo/vector-icons';
 
 import Header from "../components/Header"
 import CartTabNavigator from "./CartTabNavigator"
+import MyProfile from "../screens/MyProfile";
 
 import HomeStack from "./HomeStack";
 
@@ -54,6 +55,22 @@ const HomeTab = () => {
                         )
                     },
                     tabBarBadge: 3,
+                }}
+            />
+
+            <Tab.Screen
+                name="MyProfile"
+                component={MyProfile}
+                options={{
+                    tabBarIcon: ({ color }) => {
+                        return (
+                            <FontAwesome
+                                name="user"
+                                size={30}
+                                color={color}
+                            />
+                        )
+                    },
                 }}
             />
 

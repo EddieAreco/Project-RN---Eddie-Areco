@@ -9,21 +9,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 const Stack = createNativeStackNavigator()
 
 const AuthStackNavigator = () => {
-  return (
-    
-    <Stack.Navigator
-    initialRouteName='Login'
-    screenOptions={{
-      headerShown: false,
-    }}
-    >
+    return (
 
-<Stack.Screen name='Login' component={LoginScreen} />
+        <Stack.Navigator
+            initialRouteName='Login'
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
 
-<Stack.Screen name='Signup' component={SignUpScreen} />
+            <Stack.Screen name='Login' component={LoginScreen} />
 
-    </Stack.Navigator>
-  )
+            <Stack.Screen name='Signup' component={SignUpScreen} />
+
+        </Stack.Navigator>
+    )
 }
 
 export default AuthStackNavigator

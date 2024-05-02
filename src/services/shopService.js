@@ -7,6 +7,7 @@ export const shopApi = createApi({
     //SE LE ASIGNA UN NOMBRE A LA API PARA EVITAR CONFLICTOS AL TENER MAS DE 1 API
 
     baseQuery:fetchBaseQuery ({ baseUrl: baseUrl }),
+    tagTypes: ['profileImageGet'],
     endpoints: (builder) => ({
         getCategories: builder.query ({
             query: () => `categories.json`
@@ -39,10 +40,25 @@ export const shopApi = createApi({
                 method: 'POST',
                 body: order
             })
-        })
+        }),
         //ESTE ES EL ENDPOINT PARA CREAR LA ORDEN, Y SE HACE UNA MUTATION PORQUE SE VAN A ALTERAR DATOS DENTRO DE LA DATABASE(db)
+        getProfileImage: builder.query ({
+            query: (localId) => `profileImages/${localId}.json`,
+            providesTags: [`profileImageGet`]
+        }),
+        postProfileImage: builder.mutation({
+            query: ({ image, localId }) => ({
+                url: `profileImages/${localId}.json`,
+                method: "PUT",
+                body: {
+                    image: image,
+                },
+            }),
+            invalidateTags: ['profileImageGet']
+        }),
+        //EN ESTE ENDPOINT LO QUE SE HACE, ES USAR EL METODO PUT PARA QUE NO SE GENERE UN NUEVO ID EN RTDB YA QUE VAMOS A USAR UNO GENERADO POR NOSOTROS
     })
 })
 
-export const { useGetCategoriesQuery, useGetProductsByCategoryQuery, useGetProductsByIdQuery, usePostOrderMutation } = shopApi
+export const { useGetCategoriesQuery, useGetProductsByCategoryQuery, useGetProductsByIdQuery, usePostOrderMutation, useGetProfileImageQuery, usePostProfileImageMutation } = shopApi
 // HACEMOS LA EXPORTACION EN FOMRA DE HOOKS
