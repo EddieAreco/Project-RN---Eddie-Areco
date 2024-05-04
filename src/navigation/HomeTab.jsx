@@ -5,7 +5,7 @@ import { FontAwesome5, FontAwesome6, FontAwesome } from '@expo/vector-icons';
 
 import Header from "../components/Header"
 import CartTabNavigator from "./CartTabNavigator"
-import MyProfile from "../screens/MyProfile";
+import MyProfileStackNavigator from "./MyProfileStackNavigator";
 
 import HomeStack from "./HomeStack";
 
@@ -59,8 +59,8 @@ const HomeTab = () => {
             />
 
             <Tab.Screen
-                name="MyProfile"
-                component={MyProfile}
+                name="My Profile"
+                component={MyProfileStackNavigator}
                 options={{
                     tabBarIcon: ({ color }) => {
                         return (

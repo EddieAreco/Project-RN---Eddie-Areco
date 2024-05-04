@@ -23,7 +23,7 @@ const MyProfileStackNavigator = () => {
 
             <Stack.Screen 
             component={ImageSelector} 
-            name="image-selector" 
+            name="Image-selector" 
             />
 
         </Stack.Navigator>

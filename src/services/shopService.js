@@ -44,7 +44,7 @@ export const shopApi = createApi({
         //ESTE ES EL ENDPOINT PARA CREAR LA ORDEN, Y SE HACE UNA MUTATION PORQUE SE VAN A ALTERAR DATOS DENTRO DE LA DATABASE(db)
         getProfileImage: builder.query ({
             query: (localId) => `profileImages/${localId}.json`,
-            providesTags: [`profileImageGet`]
+            providesTags: ['profileImageGet']
         }),
         postProfileImage: builder.mutation({
             query: ({ image, localId }) => ({
