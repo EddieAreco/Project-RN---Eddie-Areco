@@ -6,6 +6,7 @@ import Location from '../components/Location'
 import { AntDesign } from '@expo/vector-icons';
 import { useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../services/shopService'
+import Header from '../components/Header';
 
 const { height, width } = Dimensions.get('window')
 
@@ -24,9 +25,12 @@ const MyProfile = ({ navigation }) => {
 
         <View>
 
+            <View style={styles.containerPrincipal}>
+                <Text style={styles.title}> Mi Perfil </Text>
+            </View>
             {imageFromBase || imageCamera ? (
 
-                <View style={styles.containerNoimageFromBase}>
+                <View style={styles.container}>
                     <View>
 
                         <Image
@@ -50,7 +54,7 @@ const MyProfile = ({ navigation }) => {
                 </View>
 
             ) : (
-                <View style={styles.containerNoimageFromBase}>
+                <View style={styles.container}>
                     <View>
                         <View style={styles.containerImage}>
                             <Image
@@ -83,16 +87,27 @@ const MyProfile = ({ navigation }) => {
 export default MyProfile
 
 const styles = StyleSheet.create({
-    imageMyProfile: {
+    containerPrincipal: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
         marginTop: 20,
+    },
+    title:{
+        fontSize: 30,
+        padding: 10,
+    },
+    imageMyProfile: {
         height: height * 0.2,
         width: width * 0.35,
         borderRadius: height * 0.5,
         resizeMode: 'center',
     },
-    containerNoimageFromBase: {
+    container: {
         alignItems: 'center',
         width: '100%',
+        justifyContent: 'center',
+        height: '91%',
     },
     containerImage: {
         borderRadius: height * 0.5,

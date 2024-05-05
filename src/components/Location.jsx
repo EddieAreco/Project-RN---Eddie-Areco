@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, Image, Touchable, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import * as LocationExpo from 'expo-location'
+import { colors } from '../constants/colors'
 
 const { height, width } = Dimensions.get('window')
 
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
         resizeMode: 'center',
     },
     touchable: {
-        backgroundColor: 'green',
+        backgroundColor: colors.secondary,
         width: width * 0.6,
         marginTop: 10,
         height: 40,

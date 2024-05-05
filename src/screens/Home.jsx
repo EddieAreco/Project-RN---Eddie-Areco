@@ -6,25 +6,26 @@ import CategoryItem from '../components/CategoryItem'
 import Counter from '../components/Counter'
 
 import { useGetCategoriesQuery } from '../services/shopService'
+import { colors } from '../constants/colors'
 
-const Home = ( { route, navigation } ) => {
+const Home = ({ route, navigation }) => {
 
-  const { data: categories , error, isLoading } = useGetCategoriesQuery()
+  const { data: categories, error, isLoading } = useGetCategoriesQuery()
 
   return (
     <View style={styles.container}>
-      
+
       <Counter />
-      
+
       <FlatList
-      data = {categories}
-      keyExtractor={ (item) => item}
-      renderItem={ ({item}) => 
-      
-      <CategoryItem 
-      category={item}
-      navigation={navigation}
-      />}
+        data={categories}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) =>
+
+          <CategoryItem
+            category={item}
+            navigation={navigation}
+          />}
       />
 
     </View>
@@ -33,12 +34,12 @@ const Home = ( { route, navigation } ) => {
 
 export default Home
 
-const styles= StyleSheet.create({
-    container:{
-      flex: 1,
-        backgroundColor: 'red',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background
+  },
 })

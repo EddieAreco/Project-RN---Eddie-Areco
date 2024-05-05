@@ -6,6 +6,7 @@ import ProductItem from '../components/ProductItem';
 import Search from '../components/Search';
 
 import { useGetProductsByCategoryQuery } from '../services/shopService'
+import { colors } from '../constants/colors';
 
 const ItemListCategory = (
   { setCategorySelected = () => { },
@@ -40,8 +41,7 @@ const ItemListCategory = (
       <View style = {styles.containerItemListCategory}>
 
         <Search 
-        onSearch={setKeyword} 
-        goBack={() => navigation.goBack()} 
+        onSearch={setKeyword}  
         />
 
         <FlatList
@@ -65,5 +65,6 @@ export default ItemListCategory
 const styles = StyleSheet.create({
   containerItemListCategory: {
     alignItems: 'center',
+    backgroundColor: colors.background,
   },
 })

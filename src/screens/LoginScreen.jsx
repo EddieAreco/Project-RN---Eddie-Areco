@@ -55,7 +55,7 @@ const LoginScreen = ({ navigation }) => {
 
         <View>
 
-            <View>
+            <View style={styles.container}>
 
                 <Text> Inicia sesion para usar la app</Text>
                 <InputForm
@@ -89,4 +89,15 @@ const LoginScreen = ({ navigation }) => {
 
 export default LoginScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container:{
+        marginVertical: 50,
+        marginHorizontal: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        paddingVertical: 30,
+        gap: 20,
+        borderWidth: 2
+    }
+})

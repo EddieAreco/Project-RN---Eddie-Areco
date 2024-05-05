@@ -1,11 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import { View, StyleSheet } from "react-native-web"
+import { View, StyleSheet, Text } from "react-native"
 import { FontAwesome5, FontAwesome6, FontAwesome } from '@expo/vector-icons';
 
 import Header from "../components/Header"
 import CartTabNavigator from "./CartTabNavigator"
 import MyProfileStackNavigator from "./MyProfileStackNavigator";
+
+import { colors } from "../constants/colors";
 
 import HomeStack from "./HomeStack";
 
@@ -16,12 +18,13 @@ const HomeTab = () => {
 
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                header: () => {
-                    return <Header route={route} />
-                },
+                // header: () => {
+                //     return <Header route={route} />
+                // },
+                headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBar,
-                tabBarActiveTintColor: 'purple'
+                tabBarActiveTintColor: colors.primary
             })}
         >
 
@@ -31,27 +34,41 @@ const HomeTab = () => {
                 options={{
                     tabBarIcon: ({ color }) => {
                         return (
-                            <FontAwesome5
-                                name="shopping-basket"
-                                size={24}
-                                color={color}
-                            />
+
+                            <View style={styles.containertabBarIcon}>
+
+                                <FontAwesome5
+                                    name="shopping-basket"
+                                    size={24}
+                                    color={color}
+                                />
+
+                                <Text style={styles.texttabBarIcon}>Shop</Text>
+
+                            </View>
                         )
                     }
                 }}
             />
 
             <Tab.Screen
-                name="CartTabNavigator"
+                name="Carro de Compras"
                 component={CartTabNavigator}
                 options={{
                     tabBarIcon: ({ color }) => {
                         return (
-                            <FontAwesome6
-                                name="cart-shopping"
-                                size={24}
-                                color={color}
-                            />
+
+                            <View style={styles.containertabBarIcon}>
+
+                                <FontAwesome6
+                                    name="cart-shopping"
+                                    size={24}
+                                    color={color}
+                                />
+
+                                <Text style={styles.texttabBarIcon}>Carrito</Text>
+
+                            </View>
                         )
                     },
                     tabBarBadge: 3,
@@ -64,11 +81,17 @@ const HomeTab = () => {
                 options={{
                     tabBarIcon: ({ color }) => {
                         return (
+                            <View style={styles.containertabBarIcon}>
+
                             <FontAwesome
                                 name="user"
                                 size={30}
                                 color={color}
                             />
+
+                                <Text style={styles.texttabBarIcon}>Mi Perfil</Text>
+
+                            </View>
                         )
                     },
                 }}
@@ -80,4 +103,22 @@ const HomeTab = () => {
 
 export default HomeTab
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    tabBar: {
+        borderTopEndRadius: 30,
+        borderTopStartRadius: 30,
+        borderTopWidth: 2,
+        borderTopColor: colors.primary,
+        borderEndColor: colors.primary,
+        borderStartColor: colors.primary,
+        borderBottomColor: 'white',
+        borderWidth: 2,
+        height: '8%',
+    },
+    containertabBarIcon: {
+        alignItems: 'center',
+    },
+    texttabBarIcon: {
+        fontSize: 15,
+    }
+})
