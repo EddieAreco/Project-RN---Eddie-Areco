@@ -7,6 +7,7 @@ import { setUser } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
 
 import { signupSchema } from '../validations/authSchema'
+import { colors } from '../constants/colors'
 
 const LoginScreen = ({ navigation }) => {
 
@@ -34,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
 
     const onSubmit = () => {
 
-        try{
+        try {
 
             // const validation = signupSchema.validateSync({ email, password })
             triggerSignIn({ email, password, returnSecureToken: true })
@@ -45,10 +46,10 @@ const LoginScreen = ({ navigation }) => {
             console.log(error.path)
             console.log(error.message)
 
-            
+
 
         }
-        
+
     }
 
     return (
@@ -57,27 +58,33 @@ const LoginScreen = ({ navigation }) => {
 
             <View style={styles.container}>
 
-                <Text> Inicia sesion para usar la app</Text>
+                <Text style={styles.title}>
+                    Inicia sesión para usar la app
+                </Text>
+
                 <InputForm
                     label={'email'}
                     onChange={setEmail}
                     error={errorEmail}
                 />
                 <InputForm
-                    label={'password'}
+                    label={'contraseña'}
                     onChange={setPassword}
                     error={errorPassword}
                     isSecure={true}
                 />
+
                 <SubmitButton
                     onPress={onSubmit}
                     title='Enviar'
                 />
-                <Text>No tienes una cuenta aún?</Text>
+
+                <Text style={styles.options}>No tienes una cuenta aún?</Text>
+
                 <Pressable
                     onPress={() => { navigation.navigate('Signup') }}
                 >
-                    <Text> Registrarme </Text>
+                    <Text style={styles.options}> Registrarme </Text>
                 </Pressable>
 
             </View>
@@ -90,7 +97,7 @@ const LoginScreen = ({ navigation }) => {
 export default LoginScreen
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         marginVertical: 50,
         marginHorizontal: 10,
         alignItems: 'center',
@@ -99,5 +106,12 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         gap: 20,
         borderWidth: 2
+    },
+    title: {
+        fontSize: 25,
+    },
+    options:{
+        color: colors.primary,
+        fontSize: 15,
     }
 })

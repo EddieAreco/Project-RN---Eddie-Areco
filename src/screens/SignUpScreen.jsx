@@ -9,6 +9,7 @@ import { useSignUpMutation } from '../services/authenticatorService'
 import { setUser } from '../features/user/userSlice'
 
 import { signupSchema } from '../validations/authSchema'
+import { colors } from '../constants/colors'
 
 const SignUpScreen = ({ navigation }) => {
 
@@ -74,9 +75,11 @@ const SignUpScreen = ({ navigation }) => {
 
         <View>
 
-            <View>
+            <View style={styles.container}>
 
-                <Text>SignUpScreen</Text>
+                <Text style={styles.title}>
+                    Registro
+                </Text>
 
                 <InputForm
                     label={'email'}
@@ -84,22 +87,25 @@ const SignUpScreen = ({ navigation }) => {
                     error={errorEmail}
                 />
                 <InputForm
-                    label={'password'}
+                    label={'contraseña'}
                     onChange={setPassword}
                     error={errorPassword}
                     isSecure={true}
                 />
                 <InputForm
-                    label={'confirmPassword'}
+                    label={'confirmar contraseña'}
                     onChange={setConfirmPassword}
                     error={errorConfirmPassword}
                     isSecure={true}
                 />
+
                 <SubmitButton onPress={onSubmit} title='Enviar' />
-                <Text> Ya tienes una cuenta? </Text>
+
+                <Text style={styles.options}> Ya tienes una cuenta? </Text>
+
                 <Pressable onPress={() => navigation.navigate('Login')} >
 
-                    <Text> Loguearme </Text>
+                    <Text style={styles.options}> Loguearme </Text>
 
                 </Pressable>
 
@@ -112,4 +118,22 @@ const SignUpScreen = ({ navigation }) => {
 
 export default SignUpScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        marginVertical: 50,
+        marginHorizontal: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        paddingVertical: 30,
+        gap: 20,
+        borderWidth: 2
+    },
+    title:{
+        fontSize: 25,
+    },
+    options:{
+        color: colors.primary,
+        fontSize: 15,
+    }
+})

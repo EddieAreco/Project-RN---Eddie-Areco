@@ -9,17 +9,17 @@ import { setIdSelected } from '../features/shop/shopSlice';
 
 const ProductItem = (
     { product,
-       navigation,
+        navigation,
         setProductSelected = () => { },
     }) => {
 
-        const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const { height, width } = useWindowDimensions()
 
     const handleNavigate = () => {
 
-        dispatch( setIdSelected( product.id ) )
+        dispatch(setIdSelected(product.id))
 
         navigation.navigate('Detail', { productId: product.id })
     }
@@ -28,7 +28,7 @@ const ProductItem = (
 
         <Card style={styles.additionalStylesCard}>
 
-            <Pressable style={styles.pressable} onPress={ handleNavigate }>
+            <Pressable style={styles.pressable} onPress={handleNavigate}>
 
                 <Text style={styles.textCategory}>{product.title}</Text>
                 <Image
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     textCategory: {
         color: 'green',
-        width:'50%'
+        width: '50%'
     },
     img: {
         height: 120,
