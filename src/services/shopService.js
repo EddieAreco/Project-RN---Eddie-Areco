@@ -54,11 +54,38 @@ export const shopApi = createApi({
                     image: image,
                 },
             }),
-            invalidateTags: ['profileImageGet']
+            invalidatesTags: ['profileImageGet']
         }),
         //EN ESTE ENDPOINT LO QUE SE HACE, ES USAR EL METODO PUT PARA QUE NO SE GENERE UN NUEVO ID EN RTDB YA QUE VAMOS A USAR UNO GENERADO POR NOSOTROS
+        getLocation: builder.query ({
+            query: (localId) => `locations/${localId}.json`,
+            // providesTags: ['locationGet']
+        }),
+        postLocation: builder.mutation({
+            query: ({ location, localId }) => ({
+                url: `locations/${localId}.json`,
+                method: "PUT",
+                body: {
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    address: location.address,
+                    dateLocation: location.dateLocation,
+                    user: location.user,
+                },
+            }),
+            // invalidatesTags: ['locationGet']
+        }),
     })
 })
 
-export const { useGetCategoriesQuery, useGetProductsByCategoryQuery, useGetProductsByIdQuery, usePostOrderMutation, useGetProfileImageQuery, usePostProfileImageMutation } = shopApi
+export const { 
+    useGetCategoriesQuery, 
+    useGetProductsByCategoryQuery, 
+    useGetProductsByIdQuery, 
+    usePostOrderMutation, 
+    useGetProfileImageQuery, 
+    usePostProfileImageMutation,
+    useGetLocationQuery,
+    usePostLocationMutation, 
+} = shopApi
 // HACEMOS LA EXPORTACION EN FOMRA DE HOOKS

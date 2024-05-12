@@ -17,7 +17,7 @@ const MyProfileStackNavigator = () => {
             }}
         >
 
-            <Stack.Screens
+            <Stack.Screen
                 component={MyProfile}
                 name="MyProfile"
             />

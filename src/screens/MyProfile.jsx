@@ -16,6 +16,7 @@ const MyProfile = ({ navigation }) => {
     const { data: imageFromBase } = useGetProfileImageQuery(localId)
     
     console.log('user', user)
+    console.log('localId', localId)
 
     const launchCamera = () => {
         navigation.navigate('Image-selector')
