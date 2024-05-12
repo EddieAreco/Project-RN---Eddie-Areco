@@ -10,6 +10,22 @@ import { Provider } from 'react-redux';
 
 import store from './src/Store'
 
+import { initSQLiteDB } from './src/persistence';
+
+(async () => {
+
+  try {
+
+    const response = await initSQLiteDB()
+    console.log({responseCreatinDB: response})
+    console.log('DB INICICIALIZADA')
+    
+  } catch (error) {
+    console.log({errorCreatingDB: error})
+  }
+
+}) ()
+
 export default function App() {
 
   // const { width, height } = useWindowDimensions()
